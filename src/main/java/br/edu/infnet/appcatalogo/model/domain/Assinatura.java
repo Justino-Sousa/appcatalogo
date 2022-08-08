@@ -9,6 +9,15 @@ public class Assinatura {
 	public Catalogo catalogo;
 	public BigDecimal preco;
 	
+	
+	public Assinatura(char tipoAssinatura,Catalogo catalogo, BigDecimal preco) {
+		
+		this.tipoAssinatura = tipoAssinatura;
+		this.catalogo = catalogo;
+		this.preco = preco;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return tipoAssinatura + ";" + catalogo + ";" + preco;
