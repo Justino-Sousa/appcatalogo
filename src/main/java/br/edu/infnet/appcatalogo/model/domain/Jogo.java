@@ -5,7 +5,7 @@ public class Jogo {
 	private Integer codigo;
 	private String nome;
 	private String descricao;
-
+	
 	public Integer getCodigo() {
 		return codigo;
 	}
