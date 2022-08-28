@@ -3,6 +3,8 @@ package br.edu.infnet.appcatalogo.model.domain;
 import java.util.Set;
 
 import br.edu.infnet.appcatalogo.interfaces.IPrinter;
+import br.edu.infnet.appcatalogo.model.exceptions.AssinaturaNullException;
+import br.edu.infnet.appcatalogo.model.exceptions.CatalogoSemJogosException;
 
 public class Catalogo implements IPrinter {
 
@@ -12,8 +14,17 @@ public class Catalogo implements IPrinter {
 	private Assinatura assinatura;
 	private Set<Jogo> jogos;
 
-	public Catalogo(Assinatura assinatura) {
+	public Catalogo(Assinatura assinatura, Set<Jogo> jogos) throws AssinaturaNullException, CatalogoSemJogosException{
+		
+		if(assinatura == null) {
+			throw new AssinaturaNullException("Impossivel criar um catalogo sem assinatura!");
+		}
+		if(jogos.size() < 1) {
+			throw new CatalogoSemJogosException("Impossivel criar um catalogo sem jogos!");
+		}
+		
 		this.assinatura = assinatura;
+		this.jogos = jogos;
 	}
 
 	public Integer getCodigo() {
@@ -39,16 +50,7 @@ public class Catalogo implements IPrinter {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Set<Jogo> getJogos() {
-		return jogos;
-	}
-
-	public void setJogos(Set<Jogo> jogos) {
-		this.jogos = jogos;
-	}
-
-
+	
 	@Override
 	public void impressao() {
 		System.out.println("#Catalogo");

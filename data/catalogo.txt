@@ -1,0 +1,3 @@
+B;Basic;100.00;Catalogo de jogos básicos;Basic
+P;Premium;200.00;Catalogo de jogos intermédiario;Premium
+D;Deluxe;300.00;Catalogo de jogos Fodas;Deluxe

@@ -1,5 +1,9 @@
 package br.edu.infnet.appcatalogo;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 
 import org.springframework.boot.ApplicationArguments;
@@ -9,46 +13,62 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appcatalogo.controller.JogoPremiumController;
 import br.edu.infnet.appcatalogo.model.domain.JogoPremium;
+import br.edu.infnet.appcatalogo.model.exceptions.ValorInvalidoException;
 
 @Component
 @Order(5)
 public class JogoPremiumTeste implements ApplicationRunner {
 
 	@Override
-	public void run(ApplicationArguments args) throws Exception {
-		
-		//Inicio do catalogo		
-		System.out.println("### Jogo Premium início ####"+"\r\n");
-		
-		JogoPremium jp1 = new JogoPremium();
-		jp1.setValor(new BigDecimal(250.00));
-		jp1.setDescricao("Crash Bandicoot é um jogo eletrônico de plataforma desenvolvido pela Naughty Dog e publicado pela Sony Computer Entertainment em 1996 para o console PlayStation. É o primeiro episódio da série Crash Bandicoot."); 
-		jp1.setGenero("Aventura");
-		jp1.setCodigo(4);
-		jp1.setDesenvolvedor("Naughty Dog");
-		jp1.setNome("Crash Bandicoot");
-		JogoPremiumController.incluir(jp1);
-		
-		JogoPremium jp2 = new JogoPremium();
-		jp2.setValor(new BigDecimal(200.00));
-		jp2.setDescricao("eFootball é uma série de jogos eletrônicos de simulação de futebol desenvolvido e publicado pela Konami desde 1995. Consiste em dezoito jogos principais e vários spin-offs que foram lançados em diversas plataformas diferentes. A série alcançou sucesso crítico e comercial.");
-		jp2.setGenero("Esportes");
-		jp2.setCodigo(5);
-		jp2.setDesenvolvedor("Konami");
-		jp2.setNome("eFootball");
-		JogoPremiumController.incluir(jp2);
-		
-		JogoPremium jp3 = new JogoPremium();
-		jp3.setValor(new BigDecimal(280.00));
-		jp3.setDescricao("Returnal é um jogo eletrônico de tiro em terceira pessoa roguelike desenvolvido pela Housemarque e publicado pela Sony Interactive Entertainment. Foi lançado exclusivamente para PlayStation 5 em 30 de abril de 2021.");
-		jp3.setGenero( "Tiro/terceira pessoa");
-		jp3.setCodigo(6);
-		jp3.setDesenvolvedor("Housemarque");
-		jp3.setNome("Returnal");
-		JogoPremiumController.incluir(jp3);
-		
-		//Fim do catalogo		
-		System.out.println("\r\n"+"### Jogo Premium Fim ####"+"\r\n");
-		
+	public void run(ApplicationArguments args) {
+
+		System.out.println("### Jogo Premium início ####" + "\r\n");
+
+		String dir = "/home/justino/Documentos/Programação/STS-workspace/appcatalogo/data/";
+		String arq = "jogoPremium.txt";
+
+		try {
+
+			try {
+				FileReader fileReader = new FileReader(dir + arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				String linha = leitura.readLine();
+				while (linha != null) {
+
+					try {
+
+						String[] campos = linha.split("[;]");
+
+						JogoPremium jp1 = new JogoPremium();
+						jp1.setValor(BigDecimal.valueOf(Double.valueOf(campos[0])));
+						jp1.setDescricao(campos[1]);
+						jp1.setGenero(campos[2]);
+						jp1.setDesenvolvedor(campos[3]);
+						jp1.setNome(campos[4]);
+						JogoPremiumController.incluir(jp1);
+						System.out.println("Calculo de venda avulsa: " + jp1.calcularVendaAvulsa());
+					} catch (ValorInvalidoException e) {
+						System.out.println("[ERROR - JogoPremium] " + e.getMessage());
+					}
+
+					linha = leitura.readLine();
+				}
+
+				leitura.close();
+				fileReader.close();
+
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERROR] O arquivo não existe!");
+			} catch (IOException e) {
+				System.out.println("[ERROR] Problema no fechamento do arquivo!");
+			}
+
+		} finally {
+			System.out.println("Terminou!");
+		}
+
+		// Fim do catalogo
+		System.out.println("\r\n" + "### Jogo Premium Fim ####" + "\r\n");
+
 	}
 }

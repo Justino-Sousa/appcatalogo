@@ -1,19 +1,20 @@
 package br.edu.infnet.appcatalogo.model.domain;
 
-import java.math.BigDecimal;
+import br.edu.infnet.appcatalogo.model.exceptions.ValorInvalidoException;
 
 public class JogoPremium extends Jogo {
 
-	private BigDecimal valor;
+	private static final Double taxaPremium = 2.0;
+	private String descricao;
 	private String desenvolvedor;
 	private String genero;
 
-	public BigDecimal getValor() {
-		return valor;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getDesenvolvedor() {
@@ -33,19 +34,23 @@ public class JogoPremium extends Jogo {
 	}
 
 	@Override
-	public String toString() {
-		return valor + ";" + desenvolvedor + ";" + genero + super.toString();
-	}
-
-	@Override
 	public void impressao() {
 		System.out.println("#JogoPremium");
 		System.out.println(this);
 	}
 
 	@Override
-	public Double calcularVendaAvulsa() {
-		Double retorno = getCodigo() * valor.doubleValue() * 0.3;
-		return retorno;
+	public Double calcularVendaAvulsa() throws ValorInvalidoException {
+		
+		if(getValor().doubleValue() < 150.00) {
+			throw new ValorInvalidoException("Valor de um jogo Premium("+ getValor() +") não pode ser menor que 150.");
+		}
+		return taxaPremium * getValor().doubleValue();
 	}
+
+	@Override
+	public String toString() {
+		return descricao + ";" + desenvolvedor + ";" + genero + super.toString();
+	}
+
 }

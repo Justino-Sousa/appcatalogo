@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import br.edu.infnet.appcatalogo.interfaces.IPrinter;
+import br.edu.infnet.appcatalogo.model.exceptions.PrecoInvalidoException;
 
 public class Assinatura implements IPrinter {
 
@@ -13,7 +14,11 @@ public class Assinatura implements IPrinter {
 	private BigDecimal preco;
 	private LocalDate data;
 
-	public Assinatura(char tipoAssinatura, String nome, BigDecimal preco) {
+	public Assinatura(char tipoAssinatura, String nome, BigDecimal preco) throws PrecoInvalidoException {
+		
+		if(preco == null) {
+			throw new PrecoInvalidoException("Assinatura precisa ter um preço");
+		}
 
 		this.tipoAssinatura = tipoAssinatura;
 		this.nome = nome;

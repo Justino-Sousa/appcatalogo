@@ -1,0 +1,3 @@
+300.00;The Last of Us é um jogo eletrônico de ação-aventura e sobrevivência desenvolvido pela Naughty Dog e publicado pela Sony Computer Entertainment.;Ação e aventura/Survival horror;Naughty Dog;The Last of Us
+300.00;God of War Ragnarök é um futuro jogo eletrônico de ação-aventura desenvolvido pela Santa Monica Studio e publicado pela Sony Interactive Entertainment. Está programado para ser lançado em 9 de novembro de 2022 para PlayStation 4 e PlayStation 5.;Ação e aventura/luta/hack and slash;Santa monica;God of War Ragnarök
+350.00;FIFA 22 é um jogo eletrônico de simulação de futebol desenvolvido e publicado pela Electronic Arts.;Esportes;EA;FIFA 22

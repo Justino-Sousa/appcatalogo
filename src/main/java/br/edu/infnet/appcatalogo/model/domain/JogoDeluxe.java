@@ -1,19 +1,20 @@
 package br.edu.infnet.appcatalogo.model.domain;
 
-import java.math.BigDecimal;
+import br.edu.infnet.appcatalogo.model.exceptions.GeneroNaoPodeSerNull;
 
 public class JogoDeluxe extends Jogo {
 
-	private BigDecimal valor;
+	private static final Double taxaDeluxe = 2.5;
+	private String descricao;
 	private String desenvolvedor;
 	private String genero;
 
-	public BigDecimal getValor() {
-		return valor;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getDesenvolvedor() {
@@ -39,13 +40,17 @@ public class JogoDeluxe extends Jogo {
 	}
 
 	@Override
-	public Double calcularVendaAvulsa() {
-		Double retorno = getCodigo() * valor.doubleValue() * 0.5;
-		return retorno;
+	public Double calcularVendaAvulsa() throws GeneroNaoPodeSerNull {
+		
+		if(getGenero() == null) {
+			throw new GeneroNaoPodeSerNull("O Genero("+ getGenero() +") Não pode ser null");
+		}
+		
+		return taxaDeluxe * getValor().doubleValue();
 	}
 	
 	@Override
 	public String toString() {
-		return valor + ";" + desenvolvedor + ";" + genero + super.toString();
+		return descricao + ";" + desenvolvedor + ";" + genero + super.toString();
 	}
 }

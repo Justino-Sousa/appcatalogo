@@ -1,19 +1,20 @@
 package br.edu.infnet.appcatalogo.model.domain;
 
-import java.math.BigDecimal;
+import br.edu.infnet.appcatalogo.model.exceptions.ValorZeradoException;
 
 public class JogoBasic extends Jogo {
 
-	private BigDecimal valor;
+	private static final Double taxaBasic = 1.5;
 	private String desenvolvedor;
 	private String genero;
+	private String descricao;
 
-	public BigDecimal getValor() {
-		return valor;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getDesenvolvedor() {
@@ -33,19 +34,24 @@ public class JogoBasic extends Jogo {
 	}
 
 	@Override
-	public String toString() {
-		return valor + ";" + desenvolvedor + ";" + genero + super.toString();
-	}
-
-	@Override
 	public void impressao() {
 		System.out.println("#JogoBasic");
 		System.out.println(this);
 	}
 
 	@Override
-	public Double calcularVendaAvulsa() {
-		Double retorno = getCodigo() * valor.doubleValue();
-		return retorno;
+	public Double calcularVendaAvulsa() throws ValorZeradoException {
+		
+		if(getValor().doubleValue() == 0) {
+			throw new ValorZeradoException("Valor de um jogo basic("+ getValor() +") 0.");
+		}
+		
+		return taxaBasic * getValor().doubleValue();
 	}
+	 
+	@Override
+	public String toString() {
+		return descricao + ";" + desenvolvedor + ";" + genero + super.toString();
+	}
+
 }
