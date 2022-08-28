@@ -1,10 +1,14 @@
 package br.edu.infnet.appcatalogo.model.domain;
 
-public class Jogo {
+import br.edu.infnet.appcatalogo.interfaces.IPrinter;
+
+public abstract class Jogo implements IPrinter {
 
 	private Integer codigo;
 	private String nome;
 	private String descricao;
+	
+	public abstract Double calcularVendaAvulsa();
 	
 	public Integer getCodigo() {
 		return codigo;

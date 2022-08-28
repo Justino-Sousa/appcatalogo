@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,24 +57,18 @@
 					<th>Código</th>
 					<th>Nome</th>
 					<th>Descrição</th>
+					<th>Excluir</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>001</td>
-					<td>Catalogo Basic</td>
-					<td>Jogos da assinatura básica, poucas opções de jogos</td>
-				</tr>
-				<tr>
-					<td>002</td>
-					<td>Catalogo Premium</td>
-					<td>Jogos da assinatura intermediária, boa opções de jogos</td>
-				</tr>
-				<tr>
-					<td>003</td>
-					<td>Catalogo Deluxe</td>
-					<td>Jogos da assinatura total, contém todos os jogos da plataforma</td>
-				</tr>
+				<c:forEach var="c" items="${listagem}">
+					<tr>
+						<td>${c.codigo}</td>
+						<td>${c.nome}</td>
+						<td>${c.descricao}</td>
+						<td><a href="/catalogo/${c.codigo}/delete">excluir</a></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

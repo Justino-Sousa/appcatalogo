@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,33 +59,22 @@
 					<th>Valor</th>
 					<th>Desenvolvedor</th>
 					<th>Genero</th>
+					<th>Excluir</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>001</td>
-					<td>Memory game</td>
-					<td>Jogo de memoria</td>
-					<td>R$ 150,00</td>
-					<td>Sony</td>
-					<td>Estratégia</td>
-				</tr>
-				<tr>
-					<td>002</td>
-					<td>Bilhar</td>
-					<td>Bilhar online</td>
-					<td>R$ 100,00</td>
-					<td>Santa monica</td>
-					<td>Diversão</td>
-				</tr>
-				<tr>
-					<td>003</td>
-					<td>Super Gamão</td>
-					<td>Gamão online</td>
-					<td>R$ 130,00</td>
-					<td>Division</td>
-					<td>Jogos de tabuleiro</td>
-				</tr>
+				<c:forEach var="jb" items="${listagem}">
+					<tr>
+						<td>${jb.codigo}</td>
+						<td>${jb.nome}</td>
+						<td>${jb.descricao}</td>
+						<td>${jb.valor}</td>	
+						<td>${jb.desenvolvedor}</td>
+						<td>${jb.genero}</td>
+						<td><a href="/jogoBasic/${jb.codigo}/delete">excluir</a></td>
+
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

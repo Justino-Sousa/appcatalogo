@@ -36,4 +36,16 @@ public class JogoBasic extends Jogo {
 	public String toString() {
 		return valor + ";" + desenvolvedor + ";" + genero + super.toString();
 	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#JogoBasic");
+		System.out.println(this);
+	}
+
+	@Override
+	public Double calcularVendaAvulsa() {
+		Double retorno = getCodigo() * valor.doubleValue();
+		return retorno;
+	}
 }

@@ -33,6 +33,18 @@ public class JogoDeluxe extends Jogo {
 	}
 
 	@Override
+	public void impressao() {
+		System.out.println("#JogoDeluxe");
+		System.out.println(this);
+	}
+
+	@Override
+	public Double calcularVendaAvulsa() {
+		Double retorno = getCodigo() * valor.doubleValue() * 0.5;
+		return retorno;
+	}
+	
+	@Override
 	public String toString() {
 		return valor + ";" + desenvolvedor + ";" + genero + super.toString();
 	}

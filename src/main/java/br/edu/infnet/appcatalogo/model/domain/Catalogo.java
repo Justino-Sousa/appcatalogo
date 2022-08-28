@@ -1,17 +1,19 @@
 package br.edu.infnet.appcatalogo.model.domain;
 
-public class Catalogo {
+import java.util.Set;
+
+import br.edu.infnet.appcatalogo.interfaces.IPrinter;
+
+public class Catalogo implements IPrinter {
 
 	private Integer codigo;
 	private String nome;
 	private String descricao;
-	
-	
+	private Assinatura assinatura;
+	private Set<Jogo> jogos;
 
-	public Catalogo(Integer codigo, String nome, String descricao) {
-		this.codigo = codigo;
-		this.nome = nome;
-		this.descricao = descricao;
+	public Catalogo(Assinatura assinatura) {
+		this.assinatura = assinatura;
 	}
 
 	public Integer getCodigo() {
@@ -38,9 +40,51 @@ public class Catalogo {
 		this.descricao = descricao;
 	}
 
-	@Override
-	public String toString() {
-		return codigo + ";" + nome + ";" + descricao;
+	public Set<Jogo> getJogos() {
+		return jogos;
 	}
 
+	public void setJogos(Set<Jogo> jogos) {
+		this.jogos = jogos;
+	}
+
+
+	@Override
+	public void impressao() {
+		System.out.println("#Catalogo");
+		System.out.println(this);
+	}
+	
+	@Override
+	public String toString() {
+		return codigo + ";" + nome + ";" + descricao + ";" + assinatura + ";" + jogos.size();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+		Catalogo other = (Catalogo) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+	
+	
+	
 }

@@ -36,4 +36,16 @@ public class JogoPremium extends Jogo {
 	public String toString() {
 		return valor + ";" + desenvolvedor + ";" + genero + super.toString();
 	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#JogoPremium");
+		System.out.println(this);
+	}
+
+	@Override
+	public Double calcularVendaAvulsa() {
+		Double retorno = getCodigo() * valor.doubleValue() * 0.3;
+		return retorno;
+	}
 }

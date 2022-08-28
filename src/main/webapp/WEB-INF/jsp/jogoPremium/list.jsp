@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -52,27 +53,27 @@
 		<table class="table table-dark table-striped">
 			<thead>
 				<tr>
-					<th>Atributo</th>
-					<th>Tipo</th>
+					<th>Código</th>
+					<th>Nome</th>
 					<th>Descrição</th>
+					<th>Valor</th>
+					<th>Desenvolvedor</th>
+					<th>Genero</th>
+					<th>Excluir</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>valor</td>
-					<td>BigDecimal</td>
-					<td>preço do jogo</td>
-				</tr>
-				<tr>
-					<td>descricao</td>
-					<td>String</td>
-					<td>descrição do jogo</td>
-				</tr>
-				<tr>
-					<td>genero</td>
-					<td>String</td>
-					<td>genero do jogo</td>
-				</tr>
+			<c:forEach var="jp" items="${listagem}">
+					<tr>
+						<td>${jp.codigo}</td>
+						<td>${jp.nome}</td>
+						<td>${jp.descricao}</td>
+						<td>${jp.valor}</td>	
+						<td>${jp.desenvolvedor}</td>
+						<td>${jp.genero}</td>
+						<td><a href="/jogoPremium/${jp.codigo}/delete">excluir</a></td>
+					</tr>
+				</c:forEach>	
 			</tbody>
 		</table>
 	</div>

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,7 +30,7 @@
 			          <a class="nav-link" href="/jogoPremium/list">Jogos Premium</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="jogoDeluxe/list">Jogos Deluxe</a>
+			          <a class="nav-link" href="/jogoDeluxe/list">Jogos Deluxe</a>
 			        </li>
 			        <li class="nav-item">
 			          <a class="nav-link" href="/catalogo/list">Catálogo</a>
@@ -59,33 +60,21 @@
 					<th>Valor</th>
 					<th>Desenvolvedor</th>
 					<th>Genero</th>
+					<th>Excluir</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>004</td>
-					<td>Memory game</td>
-					<td>Jogo de memoria</td>
-					<td>R$ 150,00</td>
-					<td>Sony</td>
-					<td>Estratégia</td>
-				</tr>
-				<tr>
-					<td>005</td>
-					<td>Bilhar</td>
-					<td>Bilhar online</td>
-					<td>R$ 100,00</td>
-					<td>Santa monica</td>
-					<td>Diversão</td>
-				</tr>
-				<tr>
-					<td>006</td>
-					<td>Super Gamão</td>
-					<td>Gamão online</td>
-					<td>R$ 130,00</td>
-					<td>Division</td>
-					<td>Jogos de tabuleiro</td>
-				</tr>
+				<c:forEach var="jd" items="${listagem}">
+					<tr>
+						<td>${jd.codigo}</td>
+						<td>${jd.nome}</td>
+						<td>${jd.descricao}</td>
+						<td>${jd.valor}</td>	
+						<td>${jd.desenvolvedor}</td>
+						<td>${jd.genero}</td>
+						<td><a href="/jogoDeluxe/${jd.codigo}/delete">excluir</a></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

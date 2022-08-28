@@ -7,6 +7,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appcatalogo.controller.JogoDeluxeController;
 import br.edu.infnet.appcatalogo.model.domain.JogoDeluxe;
 
 @Component
@@ -16,7 +17,9 @@ public class JogoDeluxeTeste implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
-		System.out.println("#JogoDeluxe");
+		//Inicio do catalogo		
+		System.out.println("### Jogo Deluxe início ####"+"\r\n");
+		
 		JogoDeluxe jd1 = new JogoDeluxe();
 		jd1.setValor(new BigDecimal(300));
 		jd1.setDescricao("The Last of Us é um jogo eletrônico de ação-aventura e sobrevivência desenvolvido pela Naughty Dog e publicado pela Sony Computer Entertainment."); 
@@ -24,7 +27,7 @@ public class JogoDeluxeTeste implements ApplicationRunner{
 		jd1.setCodigo(7);
 		jd1.setDesenvolvedor("Naughty Dog");
 		jd1.setNome("The Last of Us");
-		System.out.println(jd1);
+		JogoDeluxeController.incluir(jd1);
 		
 		JogoDeluxe jd2= new JogoDeluxe();
 		jd2.setValor(new BigDecimal(300));
@@ -33,7 +36,7 @@ public class JogoDeluxeTeste implements ApplicationRunner{
 		jd2.setCodigo(8);
 		jd2.setDesenvolvedor("Santa monica");
 		jd2.setNome("God of War Ragnarök");
-		System.out.println(jd2);
+		JogoDeluxeController.incluir(jd2);
 		
 		JogoDeluxe jd3 = new JogoDeluxe();
 		jd3.setValor(new BigDecimal(350));
@@ -42,7 +45,9 @@ public class JogoDeluxeTeste implements ApplicationRunner{
 		jd3.setCodigo(9);
 		jd3.setDesenvolvedor("EA");
 		jd3.setNome("FIFA 22");
-		System.out.println(jd3);
+		JogoDeluxeController.incluir(jd3);
+		
+		//Fim do catalogo		
+		System.out.println("\r\n"+"### Jogo Deluxe Fim ####"+"\r\n");
 	}
-	
 }

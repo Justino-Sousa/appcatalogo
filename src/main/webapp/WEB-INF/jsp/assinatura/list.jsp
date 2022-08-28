@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -53,27 +54,24 @@
 		<table class="table table-dark table-striped">
 			<thead>
 				<tr>
+					<th>Código</th>
 					<th>Tipo de Assinatura</th>
 					<th>Catalogo</th>
 					<th>Preço</th>
+					<th>Excluir</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Basic</td>
-					<td>A</td>
-					<td>R$ 150,00</td>
-				</tr>
-				<tr>
-					<td>Premium</td>
-					<td>B</td>
-					<td>R$ 300,00</td>
-				</tr>
-				<tr>
-					<td>Deluxe</td>
-					<td>C</td>
-					<td>R$ 450,00</td>
-				</tr>
+				<c:forEach var="a" items="${listagem}">
+					<tr>
+						<td>${a.codigo}</td>
+						<td>${a.tipoAssinatura}</td>
+						<td>${a.nome}</td>
+						<td>R$ ${a.preco},00</td>	
+						<td><a href="/assinatura/${a.codigo}/delete">excluir</a></td>
+
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
