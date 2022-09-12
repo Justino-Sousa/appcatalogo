@@ -15,38 +15,31 @@
 <body>
 	
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
-	
+
 	<div class="container">
 		
 		<h2>AppCatalogo</h2>
 		<p>Projeto de gestão de catálogo de jogos online</p>
 		<hr>
-
-		<h3>Classe: JogoDeluxe</h3>
+		<h3>Usuários cadastrados: </h3>
 		<table class="table table-dark table-striped">
 			<thead>
 				<tr>
-					<th>Código</th>
 					<th>Nome</th>
-					<th>Descrição</th>
-					<th>Valor</th>
-					<th>Desenvolvedor</th>
-					<th>Genero</th>
+					<th>E-mail</th>
+					<th>Senha</th>
 					<th>Excluir</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="jd" items="${listagem}">
+			<c:forEach var="u" items="${listagem}">
 					<tr>
-						<td>${jd.codigo}</td>
-						<td>${jd.nome}</td>
-						<td>${jd.descricao}</td>
-						<td>${jd.valor}</td>	
-						<td>${jd.desenvolvedor}</td>
-						<td>${jd.genero}</td>
-						<td><a href="/jogoDeluxe/${jd.codigo}/delete">excluir</a></td>
+						<td>${u.nome}</td>
+						<td>${u.email}</td>
+						<td>${u.senha}</td>
+						<td><a href="/usuario/${u.email}/delete">excluir</a></td>
 					</tr>
-				</c:forEach>
+				</c:forEach>	
 			</tbody>
 		</table>
 	</div>

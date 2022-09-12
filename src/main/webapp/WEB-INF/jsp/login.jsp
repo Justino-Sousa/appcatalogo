@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,42 +13,32 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	
-	<c:import url="/WEB-INF/jsp/menu.jsp" />
-	
-	<div class="container">
-		
-		<h2>AppCatalogo</h2>
-		<p>Projeto de gestão de catálogo de jogos online</p>
-		<hr>
 
-		<h3>Classe: JogoDeluxe</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Código</th>
-					<th>Nome</th>
-					<th>Descrição</th>
-					<th>Valor</th>
-					<th>Desenvolvedor</th>
-					<th>Genero</th>
-					<th>Excluir</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="jd" items="${listagem}">
-					<tr>
-						<td>${jd.codigo}</td>
-						<td>${jd.nome}</td>
-						<td>${jd.descricao}</td>
-						<td>${jd.valor}</td>	
-						<td>${jd.desenvolvedor}</td>
-						<td>${jd.genero}</td>
-						<td><a href="/jogoDeluxe/${jd.codigo}/delete">excluir</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+	<c:import url="/WEB-INF/jsp/menu.jsp" />
+
+	<br />
+	<div class="container">
+		<form method="post" action="/login">
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label">
+					Endereço de e-mail
+				</label> 
+				<input type="email" class="form-control" name="email" aria-describedby="emailHelp" required="required">
+				<div id="emailHelp" class="form-text">
+					Nós nunca compartilharemos seu e-mail com ninguém.
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Senha</label>
+				<input type="password" class="form-control" name="senha" required="required">
+			</div>
+			<div class="mb-3 form-check">
+				<input type="checkbox" class="form-check-input" id="" >
+				<label class="form-check-label" for="exampleCheck1">Lembre-me</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Entrar</button>
+		</form>
+
 	</div>
 
 

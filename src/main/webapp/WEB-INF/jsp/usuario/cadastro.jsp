@@ -13,42 +13,35 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	
+
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
 	
+	<br />
 	<div class="container">
-		
-		<h2>AppCatalogo</h2>
-		<p>Projeto de gestão de catálogo de jogos online</p>
-		<hr>
+		<h3>Cadastramento de Usuário</h3>
+		<form method="post" action="/usuario/incluir">
 
-		<h3>Classe: JogoDeluxe</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Código</th>
-					<th>Nome</th>
-					<th>Descrição</th>
-					<th>Valor</th>
-					<th>Desenvolvedor</th>
-					<th>Genero</th>
-					<th>Excluir</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="jd" items="${listagem}">
-					<tr>
-						<td>${jd.codigo}</td>
-						<td>${jd.nome}</td>
-						<td>${jd.descricao}</td>
-						<td>${jd.valor}</td>	
-						<td>${jd.desenvolvedor}</td>
-						<td>${jd.genero}</td>
-						<td><a href="/jogoDeluxe/${jd.codigo}/delete">excluir</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+			<div class="mb-3">
+				<label class="form-label">Nome</label> 
+				<input type="text" class="form-control" name="nome" required="required">
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label"> Endereço de e-mail </label> 
+				<input type="email" class="form-control" name="email" aria-describedby="emailHelp" required="required">
+				<div id="emailHelp" class="form-text">
+					Nós nunca compartilharemos seu e-mail com ninguém.
+				</div>
+			</div>
+			
+			<div class="mb-3">
+				<label class="form-label">Senha</label> <input type="password"
+					class="form-control" name="senha" required="required">
+			</div>
+
+			<button type="submit" class="btn btn-primary">cadastrar</button>
+		</form>
+
 	</div>
 
 

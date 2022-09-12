@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,43 +13,15 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  
-	<div class=container>
-  		<div class="container-fluid">
-    		<div class="collapse navbar-collapse" id="navbarText">
-      			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			        <li class="nav-item">
-			          <a class="nav-link active" aria-current="page" href="/">Home</a>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link" href="/jogoBasic/list">Jogos Basic</a>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link" href="/jogoPremium/list">Jogos Premium</a>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link" href="/jogoDeluxe/list">Jogos Deluxe</a>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link" href="/catalogo/list">Catálogo</a>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link" href="/assinatura/list">Assinatura</a>
-			        </li>
-      			</ul>
-    		</div>
-		</div>
-	</div>
-</nav>
-	
+
+	<c:import url="/WEB-INF/jsp/menu.jsp" />
+
 	<div class="container">
-		
+
 		<h2>AppCatalogo</h2>
 		<p>Projeto de gestão de catálogo de jogos online</p>
 		<hr>
-		
+
 		<h3>Classe: Catalogo</h3>
 		<table class="table table-dark table-striped">
 			<thead>
@@ -76,7 +49,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<h3>Classe: Assinatura</h3>
 		<table class="table table-dark table-striped">
 			<thead>
@@ -104,7 +77,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<h3>Classe: Jogo</h3>
 		<table class="table table-dark table-striped">
 			<thead>
@@ -132,7 +105,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<h3>Classe: JogoBasic</h3>
 		<table class="table table-dark table-striped">
 			<thead>
@@ -160,7 +133,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<h3>Classe: JogoPremium</h3>
 		<table class="table table-dark table-striped">
 			<thead>
@@ -188,7 +161,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<h3>Classe: JogoDeluxe</h3>
 		<table class="table table-dark table-striped">
 			<thead>
@@ -216,7 +189,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 	</div>
 
 
