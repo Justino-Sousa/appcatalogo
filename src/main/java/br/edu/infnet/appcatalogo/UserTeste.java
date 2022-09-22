@@ -5,17 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appcatalogo.controller.UsuarioController;
 import br.edu.infnet.appcatalogo.model.domain.Usuario;
+import br.edu.infnet.appcatalogo.service.UsuarioService;
 
 @Component
 @Order(6)
-public class UsuarioTeste implements ApplicationRunner {
+public class UserTeste implements ApplicationRunner {
+	
+	
+	@Autowired
+	UsuarioService usuarioService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -37,7 +42,7 @@ public class UsuarioTeste implements ApplicationRunner {
 					String[] campos = linha.split("[;]");
 
 					Usuario a2 = new Usuario(campos[0], campos[1],(campos[2]));
-					UsuarioController.incluir(a2);
+					usuarioService.incluir(a2);
 
 					linha = leitura.readLine();
 				}

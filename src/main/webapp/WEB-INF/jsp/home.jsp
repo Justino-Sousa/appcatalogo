@@ -18,177 +18,32 @@
 
 	<div class="container">
 
-		<h2>AppCatalogo</h2>
-		<p>Projeto de gestão de catálogo de jogos online</p>
+		<h2>${projeto.nome}</h2>
+		<p>${projeto.descricao}</p>
 		<hr>
 
-		<h3>Classe: Catalogo</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Atributo</th>
-					<th>Tipo</th>
-					<th>Descrição</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>codigo</td>
-					<td>Integer</td>
-					<td>código do catálogo de jogos</td>
-				</tr>
-				<tr>
-					<td>nome</td>
-					<td>String</td>
-					<td>nome do catálogo de jogos</td>
-				</tr>
-				<tr>
-					<td>descrição</td>
-					<td>String</td>
-					<td>descrição do catálogo de jogos</td>
-				</tr>
-			</tbody>
-		</table>
+		<c:forEach var="c" items="${projeto.classes}">
+			<h3>Classe: ${c.nome}</h3>
+			<table class="table table-dark table-striped">
+				<thead>
+					<tr>
+						<th>Atributo</th>
+						<th>Tipo</th>
+						<th>Descrição</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="a" items="${c.atributos}">
+						<tr>
+							<td>${a.nome}</td>
+							<td>${a.tipo}</td>
+							<td>${a.descricao}</td>
+						</tr>
+					</c:forEach>
 
-		<h3>Classe: Assinatura</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Atributo</th>
-					<th>Tipo</th>
-					<th>Descrição</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>tipoAssinatura</td>
-					<td>char</td>
-					<td>Tipo da assinatura</td>
-				</tr>
-				<tr>
-					<td>catalogo</td>
-					<td>Catalogo</td>
-					<td>Catalogo da assinatura</td>
-				</tr>
-				<tr>
-					<td>preco</td>
-					<td>Bigdecimal</td>
-					<td>Preço da assinatura</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3>Classe: Jogo</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Atributo</th>
-					<th>Tipo</th>
-					<th>Descrição</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>codigo</td>
-					<td>Integer</td>
-					<td>código do jogo</td>
-				</tr>
-				<tr>
-					<td>nome</td>
-					<td>String</td>
-					<td>nome do jogo</td>
-				</tr>
-				<tr>
-					<td>tipoAssinatura</td>
-					<td>char</td>
-					<td>tipo da assinatura para esse jogo</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3>Classe: JogoBasic</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Atributo</th>
-					<th>Tipo</th>
-					<th>Descrição</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>valor</td>
-					<td>BigDecimal</td>
-					<td>preço do jogo</td>
-				</tr>
-				<tr>
-					<td>descricao</td>
-					<td>String</td>
-					<td>descrição do jogo</td>
-				</tr>
-				<tr>
-					<td>genero</td>
-					<td>String</td>
-					<td>genero do jogo</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3>Classe: JogoPremium</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Atributo</th>
-					<th>Tipo</th>
-					<th>Descrição</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>valor</td>
-					<td>BigDecimal</td>
-					<td>preço do jogo</td>
-				</tr>
-				<tr>
-					<td>descricao</td>
-					<td>String</td>
-					<td>descrição do jogo</td>
-				</tr>
-				<tr>
-					<td>genero</td>
-					<td>String</td>
-					<td>genero do jogo</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3>Classe: JogoDeluxe</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Atributo</th>
-					<th>Tipo</th>
-					<th>Descrição</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>valor</td>
-					<td>BigDecimal</td>
-					<td>preço do jogo</td>
-				</tr>
-				<tr>
-					<td>descricao</td>
-					<td>String</td>
-					<td>descrição do jogo</td>
-				</tr>
-				<tr>
-					<td>genero</td>
-					<td>String</td>
-					<td>genero do jogo</td>
-				</tr>
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</c:forEach>
 
 	</div>
 

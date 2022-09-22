@@ -8,12 +8,12 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appcatalogo.controller.CatalogoController;
 import br.edu.infnet.appcatalogo.model.domain.Assinatura;
 import br.edu.infnet.appcatalogo.model.domain.Catalogo;
 import br.edu.infnet.appcatalogo.model.domain.Jogo;
@@ -23,10 +23,15 @@ import br.edu.infnet.appcatalogo.model.domain.JogoPremium;
 import br.edu.infnet.appcatalogo.model.exceptions.AssinaturaNullException;
 import br.edu.infnet.appcatalogo.model.exceptions.CatalogoSemJogosException;
 import br.edu.infnet.appcatalogo.model.exceptions.PrecoInvalidoException;
+import br.edu.infnet.appcatalogo.service.CatalogoService;
 
 @Component
 @Order(1)
 public class CatalogoTeste implements ApplicationRunner {
+	
+	
+	@Autowired
+	CatalogoService catalogoService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -138,7 +143,7 @@ public class CatalogoTeste implements ApplicationRunner {
 
 						c1.setDescricao(campos[3]);
 						c1.setNome(campos[4]);
-						CatalogoController.incluir(c1);
+						catalogoService.incluir(c1);
 
 					} catch (AssinaturaNullException | PrecoInvalidoException | CatalogoSemJogosException e) {
 						System.out.println("[ERROR - Pedido] " + e.getMessage());

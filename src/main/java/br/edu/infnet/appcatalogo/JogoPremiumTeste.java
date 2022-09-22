@@ -6,18 +6,23 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appcatalogo.controller.JogoPremiumController;
 import br.edu.infnet.appcatalogo.model.domain.JogoPremium;
 import br.edu.infnet.appcatalogo.model.exceptions.ValorInvalidoException;
+import br.edu.infnet.appcatalogo.service.JogoPremiumService;
 
 @Component
 @Order(5)
 public class JogoPremiumTeste implements ApplicationRunner {
+	
+
+	@Autowired
+	JogoPremiumService jogoPremiumService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -45,7 +50,7 @@ public class JogoPremiumTeste implements ApplicationRunner {
 						jp1.setGenero(campos[2]);
 						jp1.setDesenvolvedor(campos[3]);
 						jp1.setNome(campos[4]);
-						JogoPremiumController.incluir(jp1);
+						jogoPremiumService.incluir(jp1);
 						System.out.println("Calculo de venda avulsa: " + jp1.calcularVendaAvulsa());
 					} catch (ValorInvalidoException e) {
 						System.out.println("[ERROR - JogoPremium] " + e.getMessage());

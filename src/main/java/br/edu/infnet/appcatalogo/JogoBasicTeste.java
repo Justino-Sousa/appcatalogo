@@ -6,18 +6,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appcatalogo.controller.JogoBasicController;
 import br.edu.infnet.appcatalogo.model.domain.JogoBasic;
 import br.edu.infnet.appcatalogo.model.exceptions.ValorZeradoException;
+import br.edu.infnet.appcatalogo.service.JogoBasicService;
 
 @Component
 @Order(4)
 public class JogoBasicTeste implements ApplicationRunner {
+	
+	@Autowired
+	JogoBasicService jogoBasicService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -46,7 +50,7 @@ public class JogoBasicTeste implements ApplicationRunner {
 						jb1.setDesenvolvedor(campos[3]);
 						jb1.setNome(campos[4]);
 						System.out.println("Calculo de venda avulsa: " + jb1.calcularVendaAvulsa());
-						JogoBasicController.incluir(jb1);
+						jogoBasicService.incluir(jb1);
 					} catch (ValorZeradoException e) {
 						System.out.println("[ERROR - JogoBasic] " + e.getMessage());
 					}

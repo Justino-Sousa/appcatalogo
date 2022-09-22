@@ -1,0 +1,29 @@
+P;AppCatalogo;Projeto de Gestão de catalogo de jogos
+C;Usuario
+A;nome;String;Nome do usuário
+A;email;String;Email do usuário
+A;senha;String;Senha do usuário
+C;Catalogo
+A;codigo;Integer;código do catálogo de jogos
+A;nome;String;nome do catálogo de jogos
+A;descrição;String;descrição do catálogo de jogos
+C;Assinatura
+A;tipoAssinatura;char;Tipo da assinatura
+A;catalogo;Catalogo;Catalogo da assinatura
+A;preco;Bigdecimal;Preço da assinatura
+C;Jogo
+A;codigo;Integer;código do jogo
+A;nome;String;nome do jogo
+A;tipoAssinatura;char;tipo da assinatura para esse jogo
+C;JogoBasic
+A;valor;BigDecimal;preço do jogo
+A;descricao;String;descrição do jogo
+A;genero;String;genero do jogo
+C;JogoPremium
+A;valor;BigDecimal;preço do jogo
+A;descricao;String;descrição do jogo
+A;genero;String;genero do jogo
+C;JogoDeluxe
+A;valor;BigDecimal;preço do jogo
+A;descricao;String;descrição do jogo
+A;genero;String;genero do jogo

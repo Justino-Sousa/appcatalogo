@@ -6,18 +6,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appcatalogo.controller.AssinaController;
 import br.edu.infnet.appcatalogo.model.domain.Assinatura;
 import br.edu.infnet.appcatalogo.model.exceptions.PrecoInvalidoException;
+import br.edu.infnet.appcatalogo.service.AssinaService;
 
 @Component
 @Order(2)
 public class AssinaturaTeste implements ApplicationRunner {
+
+	@Autowired
+	AssinaService assinaService;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -42,7 +46,7 @@ public class AssinaturaTeste implements ApplicationRunner {
 
 						Assinatura a2 = new Assinatura(campos[0].charAt(0), campos[1],
 								BigDecimal.valueOf(Double.valueOf(campos[2])));
-						AssinaController.incluir(a2);
+						assinaService.incluir(a2);
 					} catch (PrecoInvalidoException e) {
 						System.out.println("[ERROR]" + e.getMessage());
 					}

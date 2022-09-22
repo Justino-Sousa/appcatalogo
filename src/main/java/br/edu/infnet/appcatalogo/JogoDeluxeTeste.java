@@ -6,22 +6,26 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appcatalogo.controller.JogoDeluxeController;
 import br.edu.infnet.appcatalogo.model.domain.JogoDeluxe;
 import br.edu.infnet.appcatalogo.model.exceptions.GeneroNaoPodeSerNull;
+import br.edu.infnet.appcatalogo.service.JogoDeluxeService;
 
 @Component
 @Order(6)
 public class JogoDeluxeTeste implements ApplicationRunner {
 
+	@Autowired
+	JogoDeluxeService jogoDeluxeService;
+		
 	@Override
 	public void run(ApplicationArguments args) {
-
+		
 		System.out.println("### Jogo Deluxe início ####" + "\r\n");
 		String dir = "/home/justino/Documentos/Programação/STS-workspace/appcatalogo/data/";
 		String arq = "jogoDeluxe.txt";
@@ -44,7 +48,7 @@ public class JogoDeluxeTeste implements ApplicationRunner {
 						jd1.setGenero(campos[2]);
 						jd1.setDesenvolvedor(campos[3]);
 						jd1.setNome(campos[4]);
-						JogoDeluxeController.incluir(jd1);
+						jogoDeluxeService.incluir(jd1);
 						System.out.println("Calculo de venda avulsa: " + jd1.calcularVendaAvulsa());
 					} catch (GeneroNaoPodeSerNull e) {
 						System.out.println("[ERROR - JogoDeluxe] " + e.getMessage());
