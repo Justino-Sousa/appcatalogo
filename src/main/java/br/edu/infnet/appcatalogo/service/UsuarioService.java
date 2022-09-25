@@ -11,32 +11,31 @@ import br.edu.infnet.appcatalogo.model.test.AppCatalogo;
 
 @Service
 public class UsuarioService {
-	
+
 	private static Map<String, Usuario> mapaUsuario = new HashMap<>();
-	
-public void incluir(Usuario usuario) {
-		
+
+	public void incluir(Usuario usuario) {
+
 		mapaUsuario.put(usuario.getEmail(), usuario);
-		AppCatalogo.relatorio("Inclusão da Usuário " + usuario.getNome()+" realizada com sucesso!", usuario);
+		AppCatalogo.relatorio("Inclusão da Usuário " + usuario.getNome() + " realizada com sucesso!", usuario);
 	}
-	
-	public  Collection<Usuario> obterLista(){
+
+	public Collection<Usuario> obterLista() {
 		return mapaUsuario.values();
 	}
-	
-	public  Usuario validar(String email,String senha) {
-		
+
+	public Usuario validar(String email, String senha) {
+
 		Usuario usuario = mapaUsuario.get(email);
-		
-		if(usuario != null && senha.equals(usuario.getSenha())) {
+
+		if (usuario != null && senha.equals(usuario.getSenha())) {
 			return usuario;
 		}
 		return null;
 	}
-	
-	public  void excluir(String email) {
+
+	public void excluir(String email) {
 		mapaUsuario.remove(email);
 	}
-	
 
 }

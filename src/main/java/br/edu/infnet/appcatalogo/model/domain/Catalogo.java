@@ -2,12 +2,20 @@ package br.edu.infnet.appcatalogo.model.domain;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import br.edu.infnet.appcatalogo.interfaces.IPrinter;
 import br.edu.infnet.appcatalogo.model.exceptions.AssinaturaNullException;
 import br.edu.infnet.appcatalogo.model.exceptions.CatalogoSemJogosException;
 
+@Entity
 public class Catalogo implements IPrinter {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigo;
 	private String nome;
 	private String descricao;
@@ -16,12 +24,12 @@ public class Catalogo implements IPrinter {
 
 	public Catalogo(Assinatura assinatura, Set<Jogo> jogos) throws AssinaturaNullException, CatalogoSemJogosException{
 		
-		if(assinatura == null) {
-			throw new AssinaturaNullException("Impossivel criar um catalogo sem assinatura!");
-		}
-		if(jogos.size() < 1) {
-			throw new CatalogoSemJogosException("Impossivel criar um catalogo sem jogos!");
-		}
+//		if(assinatura == null) {
+//			throw new AssinaturaNullException("Impossivel criar um catalogo sem assinatura!");
+//		}
+//		if(jogos.size() < 1) {
+//			throw new CatalogoSemJogosException("Impossivel criar um catalogo sem jogos!");
+//		}
 		
 		this.assinatura = assinatura;
 		this.jogos = jogos;
@@ -51,6 +59,15 @@ public class Catalogo implements IPrinter {
 		this.descricao = descricao;
 	}
 	
+	
+	public Assinatura getAssinatura() {
+		return assinatura;
+	}
+	
+	public void setAssinatura(Assinatura assinatura) {
+		this.assinatura = assinatura;
+	}
+
 	@Override
 	public void impressao() {
 		System.out.println("#Catalogo");

@@ -19,7 +19,6 @@ import br.edu.infnet.appcatalogo.service.JogoPremiumService;
 @Component
 @Order(5)
 public class JogoPremiumTeste implements ApplicationRunner {
-	
 
 	@Autowired
 	JogoPremiumService jogoPremiumService;
@@ -30,45 +29,45 @@ public class JogoPremiumTeste implements ApplicationRunner {
 		System.out.println("### Jogo Premium início ####" + "\r\n");
 
 		String dir = "/home/justino/Documentos/Programação/STS-workspace/appcatalogo/data/";
-		String arq = "jogoPremium.txt";
+		String arq = "jogo.txt";
 
 		try {
+			FileReader fileReader = new FileReader(dir + arq);
+			BufferedReader leitura = new BufferedReader(fileReader);
+			String linha = leitura.readLine();
+			while (linha != null) {
 
-			try {
-				FileReader fileReader = new FileReader(dir + arq);
-				BufferedReader leitura = new BufferedReader(fileReader);
-				String linha = leitura.readLine();
-				while (linha != null) {
+				String[] campos = linha.split("[;]");
+				if (campos[0].equalsIgnoreCase("JP")) {
 
 					try {
-
-						String[] campos = linha.split("[;]");
-
 						JogoPremium jp1 = new JogoPremium();
-						jp1.setValor(BigDecimal.valueOf(Double.valueOf(campos[0])));
-						jp1.setDescricao(campos[1]);
-						jp1.setGenero(campos[2]);
-						jp1.setDesenvolvedor(campos[3]);
-						jp1.setNome(campos[4]);
+						jp1.setValor(BigDecimal.valueOf(Double.valueOf(campos[1])));
+						jp1.setDescricao(campos[2]);
+						jp1.setGenero(campos[3]);
+						jp1.setDesenvolvedor(campos[4]);
+						jp1.setNome(campos[5]);
 						jogoPremiumService.incluir(jp1);
 						System.out.println("Calculo de venda avulsa: " + jp1.calcularVendaAvulsa());
 					} catch (ValorInvalidoException e) {
 						System.out.println("[ERROR - JogoPremium] " + e.getMessage());
 					}
-
-					linha = leitura.readLine();
 				}
 
-				leitura.close();
-				fileReader.close();
-
-			} catch (FileNotFoundException e) {
-				System.out.println("[ERROR] O arquivo não existe!");
-			} catch (IOException e) {
-				System.out.println("[ERROR] Problema no fechamento do arquivo!");
+				linha = leitura.readLine();
 			}
 
-		} finally {
+			leitura.close();
+			fileReader.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("[ERROR] O arquivo não existe!");
+		} catch (IOException e) {
+			System.out.println("[ERROR] Problema no fechamento do arquivo!");
+		}
+
+		finally {
+
 			System.out.println("Terminou!");
 		}
 

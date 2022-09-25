@@ -11,22 +11,22 @@ import br.edu.infnet.appcatalogo.model.test.AppCatalogo;
 
 @Service
 public class JogoBasicService {
-	
+
 	private static Map<Integer, JogoBasic> mapaJogoBasic = new HashMap<>();
 	private static Integer codigo = 1;
 
-	public  void incluir(JogoBasic jogo) {
+	public void incluir(JogoBasic jogo) {
 
 		jogo.setCodigo(codigo++);
 		mapaJogoBasic.put(jogo.getCodigo(), jogo);
 		AppCatalogo.relatorio("Inclusão do jogo " + jogo.getNome() + " realizada com sucesso!", jogo);
 	}
 
-	public  Collection<JogoBasic> obterLista() {
+	public Collection<JogoBasic> obterLista() {
 		return mapaJogoBasic.values();
 	}
 
-	public  void excluir(Integer id) {
+	public void excluir(Integer id) {
 		mapaJogoBasic.remove(id);
 	}
 }

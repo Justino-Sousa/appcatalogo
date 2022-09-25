@@ -13,44 +13,47 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	
+
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
 	
+	<br />
 	<div class="container">
-		
-		<h2>AppCatalogo</h2>
-		<p>Projeto de gestão de catálogo de jogos online</p>
-		<hr>
-		<h3>Classe: JogoPremium</h3>
-		<table class="table table-dark table-striped">
-			<thead>
-				<tr>
-					<th>Código</th>
-					<th>Nome</th>
-					<th>Descrição</th>
-					<th>Valor</th>
-					<th>Desenvolvedor</th>
-					<th>Genero</th>
-					<th>Excluir</th>
-				</tr>
-			</thead>
-			<tbody>
-			<c:forEach var="jp" items="${listagem}">
-					<tr>
-						<td>${jp.codigo}</td>
-						<td>${jp.nome}</td>
-						<td>${jp.descricao}</td>
-						<td>${jp.valor}</td>	
-						<td>${jp.desenvolvedor}</td>
-						<td>${jp.genero}</td>
-						<td><a href="/jogoPremium/${jp.codigo}/delete">excluir</a></td>
-					</tr>
-				</c:forEach>	
-			</tbody>
-		</table>
-		<a href="/jogoPremium/cadastro">
-			<button type="button" class="btn btn-outline-dark">Cadastrar</button>
-		</a>
+		<h3>Cadastramento de Catálogos</h3>
+		<form method="post" action="/catalogo/incluir">
+			
+			<div class="mb-3">
+				<label class="form-label">Nome</label> 
+				<input type="text" class="form-control" name="nome" required="required">
+			</div>
+			
+			<div class="mb-3">
+				<label class="form-label">Descrição</label> 
+				<input type="text" class="form-control" name="descricao" required="required">
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Assinatura</label> 
+				<select class="form-control" name="tipoAssinatura" required="required">
+					<option disabled="disabled" selected="selected">Selecione o tipo da assinatura</option>
+					<c:forEach var="a" items="${listagem}">
+						<option>${a.nome}</option>
+					</c:forEach>
+				</select>
+			</div>
+			
+			<div class="mb-3">
+				<c:forEach var="p" items="${jogos}">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value=""> 
+						<label class="form-check-label" >${p.nome}</label>
+					</div>
+				</c:forEach>
+			</div>
+			
+
+			<button type="submit" class="btn btn-primary">cadastrar</button>
+		</form>
+
 	</div>
 
 

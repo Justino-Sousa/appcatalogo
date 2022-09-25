@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,22 +13,22 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	
+
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
-	
+
 	<div class="container">
-		
+
 		<h2>AppCatalogo</h2>
 		<p>Projeto de gestão de catálogo de jogos online</p>
 		<hr>
-		
+
 		<h3>Classe: Assinatura</h3>
 		<table class="table table-dark table-striped">
 			<thead>
 				<tr>
 					<th>Código</th>
 					<th>Tipo de Assinatura</th>
-					<th>Catalogo</th>
+					<th>Nome</th>
 					<th>Preço</th>
 					<th>Excluir</th>
 				</tr>
@@ -39,15 +39,17 @@
 						<td>${a.codigo}</td>
 						<td>${a.tipoAssinatura}</td>
 						<td>${a.nome}</td>
-						<td>R$ ${a.preco},00</td>	
+						<td>R$ ${a.preco},00</td>
 						<td><a href="/assinatura/${a.codigo}/delete">excluir</a></td>
 
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="/assinatura/cadastro">
+			<button type="button" class="btn btn-outline-dark">Cadastrar</button>
+		</a>
 	</div>
-
 
 	<!-- importações de scripts -->
 	<script

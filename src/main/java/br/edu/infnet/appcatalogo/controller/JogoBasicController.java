@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.edu.infnet.appcatalogo.model.domain.JogoBasic;
 import br.edu.infnet.appcatalogo.service.JogoBasicService;
 
 @Controller
@@ -28,4 +30,17 @@ public class JogoBasicController {
 		jogoBasicService.excluir(id);
 		return "redirect:/jogoBasic/list";
 	}
+	
+	@GetMapping(value="/cadastro")
+	public String telaCadastro() {
+		return "/jogoBasic/cadastro";
+	}
+	
+	@PostMapping(value ="/incluir")
+	public String incluir (JogoBasic jogoBasic) {
+		
+		jogoBasicService.incluir(jogoBasic);
+		return "redirect:/jogoBasic/list";
+	} 
+	
 }

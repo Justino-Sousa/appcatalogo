@@ -3,13 +3,21 @@ package br.edu.infnet.appcatalogo.model.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import br.edu.infnet.appcatalogo.interfaces.IPrinter;
 import br.edu.infnet.appcatalogo.model.exceptions.PrecoInvalidoException;
 
+@Entity
 public class Assinatura implements IPrinter {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigo;
-	private char tipoAssinatura;
+	private Character tipoAssinatura;
 	private String nome;
 	private BigDecimal preco;
 	private LocalDate data;
@@ -30,7 +38,7 @@ public class Assinatura implements IPrinter {
 		return nome;
 	}
 	
-	public char getTipoAssinatura() {
+	public Character getTipoAssinatura() {
 		return tipoAssinatura;
 	}
 	

@@ -1,7 +1,10 @@
 package br.edu.infnet.appcatalogo.model.domain;
 
+import javax.persistence.Entity;
+
 import br.edu.infnet.appcatalogo.model.exceptions.ValorInvalidoException;
 
+@Entity
 public class JogoPremium extends Jogo {
 
 	private static final Double taxaPremium = 2.0;

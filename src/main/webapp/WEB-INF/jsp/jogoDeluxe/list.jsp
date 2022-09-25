@@ -49,6 +49,9 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="/jogoDeluxe/cadastro">
+			<button type="button" class="btn btn-outline-dark">Cadastrar</button>
+		</a>
 	</div>
 
 

@@ -29,6 +29,7 @@
 					<th>Código</th>
 					<th>Nome</th>
 					<th>Descrição</th>
+					<th>Assinatura</th>
 					<th>Excluir</th>
 				</tr>
 			</thead>
@@ -38,11 +39,15 @@
 						<td>${c.codigo}</td>
 						<td>${c.nome}</td>
 						<td>${c.descricao}</td>
+						<td>${c.assinatura.nome}</td>
 						<td><a href="/catalogo/${c.codigo}/delete">excluir</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="/catalogo/cadastro">
+			<button type="button" class="btn btn-outline-dark">Cadastrar</button>
+		</a>
 	</div>
 
 

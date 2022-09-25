@@ -42,6 +42,10 @@
 				</c:forEach>	
 			</tbody>
 		</table>
+		
+		<a href="/usuario/cadastro">
+			<button type="button" class="btn btn-outline-dark">Cadastrar</button>
+		</a>
 	</div>
 
 

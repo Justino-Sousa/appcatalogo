@@ -17,5 +17,5 @@ public class AppService {
 	public Projeto obterProjeto() {
 		return projeto;
 	}
-	
+
 }

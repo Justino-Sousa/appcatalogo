@@ -1,7 +1,10 @@
 package br.edu.infnet.appcatalogo.model.domain;
 
+import javax.persistence.Entity;
+
 import br.edu.infnet.appcatalogo.model.exceptions.ValorZeradoException;
 
+@Entity
 public class JogoBasic extends Jogo {
 
 	private static final Double taxaBasic = 1.5;
