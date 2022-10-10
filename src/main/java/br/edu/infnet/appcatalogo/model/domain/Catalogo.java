@@ -2,10 +2,15 @@ package br.edu.infnet.appcatalogo.model.domain;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import br.edu.infnet.appcatalogo.interfaces.IPrinter;
 import br.edu.infnet.appcatalogo.model.exceptions.AssinaturaNullException;
@@ -19,18 +24,28 @@ public class Catalogo implements IPrinter {
 	private Integer codigo;
 	private String nome;
 	private String descricao;
+	@OneToOne(cascade = CascadeType.DETACH)
+	@JoinColumn( name = "idSolicitante")
 	private Assinatura assinatura;
+	@ManyToMany(cascade = CascadeType.DETACH)
 	private Set<Jogo> jogos;
 
-	public Catalogo(Assinatura assinatura, Set<Jogo> jogos) throws AssinaturaNullException, CatalogoSemJogosException{
-		
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
+
+	public Catalogo() {
+	}
+
+	public Catalogo(Assinatura assinatura, Set<Jogo> jogos) throws AssinaturaNullException, CatalogoSemJogosException {
+
 //		if(assinatura == null) {
 //			throw new AssinaturaNullException("Impossivel criar um catalogo sem assinatura!");
 //		}
 //		if(jogos.size() < 1) {
 //			throw new CatalogoSemJogosException("Impossivel criar um catalogo sem jogos!");
 //		}
-		
+
 		this.assinatura = assinatura;
 		this.jogos = jogos;
 	}
@@ -58,14 +73,29 @@ public class Catalogo implements IPrinter {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
+
 	public Assinatura getAssinatura() {
 		return assinatura;
 	}
-	
+
 	public void setAssinatura(Assinatura assinatura) {
 		this.assinatura = assinatura;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Set<Jogo> getJogos() {
+		return jogos;
+	}
+
+	public void setJogos(Set<Jogo> jogos) {
+		this.jogos = jogos;
 	}
 
 	@Override
@@ -73,7 +103,7 @@ public class Catalogo implements IPrinter {
 		System.out.println("#Catalogo");
 		System.out.println(this);
 	}
-	
+
 	@Override
 	public String toString() {
 		return codigo + ";" + nome + ";" + descricao + ";" + assinatura + ";" + jogos.size();
@@ -103,7 +133,5 @@ public class Catalogo implements IPrinter {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

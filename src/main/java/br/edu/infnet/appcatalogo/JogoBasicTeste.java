@@ -9,15 +9,14 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appcatalogo.model.domain.JogoBasic;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
 import br.edu.infnet.appcatalogo.model.exceptions.ValorZeradoException;
 import br.edu.infnet.appcatalogo.service.JogoBasicService;
 
 @Component
-@Order(4)
 public class JogoBasicTeste implements ApplicationRunner {
 
 	@Autowired
@@ -25,6 +24,9 @@ public class JogoBasicTeste implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
+		
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
 
 		System.out.println("### Jogo Basic início ####" + "\r\n");
 
@@ -47,6 +49,7 @@ public class JogoBasicTeste implements ApplicationRunner {
 						jb1.setGenero(campos[3]);
 						jb1.setDesenvolvedor(campos[4]);
 						jb1.setNome(campos[5]);
+						jb1.setUsuario(usuario);
 						System.out.println("Calculo de venda avulsa: " + jb1.calcularVendaAvulsa());
 						jogoBasicService.incluir(jb1);
 					} catch (ValorZeradoException e) {

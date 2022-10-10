@@ -13,6 +13,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appcatalogo.model.domain.Assinatura;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
 import br.edu.infnet.appcatalogo.model.exceptions.PrecoInvalidoException;
 import br.edu.infnet.appcatalogo.service.AssinaService;
 
@@ -21,11 +22,15 @@ import br.edu.infnet.appcatalogo.service.AssinaService;
 public class AssinaturaTeste implements ApplicationRunner {
 
 	@Autowired
-	AssinaService assinaService;
+	AssinaService assinaService; 
 
 	@Override
 	public void run(ApplicationArguments args) {
 
+		Usuario user = new Usuario();
+		user.setId(1);
+		
+		
 		// Inicio do catalogo
 		System.out.println("### Assinatura início ####" + "\r\n");
 
@@ -44,9 +49,11 @@ public class AssinaturaTeste implements ApplicationRunner {
 
 						String[] campos = linha.split("[;]");
 
-						Assinatura a2 = new Assinatura(campos[0].charAt(0), campos[1],
+						Assinatura a2 = new Assinatura(campos[0], campos[1],
 								BigDecimal.valueOf(Double.valueOf(campos[2])));
+						a2.setUsuario(user);
 						assinaService.incluir(a2);
+						
 					} catch (PrecoInvalidoException e) {
 						System.out.println("[ERROR]" + e.getMessage());
 					}

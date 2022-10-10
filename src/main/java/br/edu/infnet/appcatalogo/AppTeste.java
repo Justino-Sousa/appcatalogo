@@ -10,7 +10,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appcatalogo.model.domain.app.Atributo;
@@ -19,7 +18,6 @@ import br.edu.infnet.appcatalogo.model.domain.app.Projeto;
 import br.edu.infnet.appcatalogo.service.AppService;
 
 @Component
-@Order(6)
 public class AppTeste implements ApplicationRunner {
 
 

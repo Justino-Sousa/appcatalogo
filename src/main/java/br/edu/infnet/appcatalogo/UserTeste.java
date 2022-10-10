@@ -15,7 +15,7 @@ import br.edu.infnet.appcatalogo.model.domain.Usuario;
 import br.edu.infnet.appcatalogo.service.UsuarioService;
 
 @Component
-@Order(6)
+@Order(1)
 public class UserTeste implements ApplicationRunner {
 	
 	

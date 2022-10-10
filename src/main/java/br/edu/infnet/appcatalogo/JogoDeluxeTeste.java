@@ -9,15 +9,14 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appcatalogo.model.domain.JogoDeluxe;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
 import br.edu.infnet.appcatalogo.model.exceptions.GeneroNaoPodeSerNull;
 import br.edu.infnet.appcatalogo.service.JogoDeluxeService;
 
 @Component
-@Order(6)
 public class JogoDeluxeTeste implements ApplicationRunner {
 
 	@Autowired
@@ -25,6 +24,9 @@ public class JogoDeluxeTeste implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
+		
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
 
 		System.out.println("### Jogo Deluxe início ####" + "\r\n");
 		String dir = "/home/justino/Documentos/Programação/STS-workspace/appcatalogo/data/";
@@ -38,20 +40,20 @@ public class JogoDeluxeTeste implements ApplicationRunner {
 
 				String[] campos = linha.split("[;]");
 				if (campos[0].equalsIgnoreCase("JD")) {
+					
 					try {
-
 						JogoDeluxe jd1 = new JogoDeluxe();
 						jd1.setValor(BigDecimal.valueOf(Double.valueOf(campos[1])));
 						jd1.setDescricao(campos[2]);
 						jd1.setGenero(campos[3]);
 						jd1.setDesenvolvedor(campos[4]);
 						jd1.setNome(campos[5]);
+						jd1.setUsuario(usuario);
 						jogoDeluxeService.incluir(jd1);
 						System.out.println("Calculo de venda avulsa: " + jd1.calcularVendaAvulsa());
 					} catch (GeneroNaoPodeSerNull e) {
 						System.out.println("[ERROR - JogoDeluxe] " + e.getMessage());
 					}
-
 				}
 
 				linha = leitura.readLine();

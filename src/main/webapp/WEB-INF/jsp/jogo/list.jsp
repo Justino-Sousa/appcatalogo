@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,31 +12,37 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
+	
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
 	
-	<br />
 	<div class="container">
-		<h3>Cadastramento de Assinatura</h3>
-		<form method="post" action="/assinatura/incluir">
+		
+		<h2>AppCatalogo</h2>
+		<p>Projeto de gestão de catálogo de jogos online</p>
+		<hr>
+		
+		<h3>Listagem de Jogos</h3>
+		<table class="table table-dark table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Valor</th>
+					<th>Excluir</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="j" items="${listagem}">
+					<tr>
+						<td>${j.codigo}</td>
+						<td>${j.nome}</td>
+						<td>${j.valor}</td>	
+						<td><a href="/jogoBasic/${j.codigo}/delete">excluir</a></td>
 
-			<div class="mb-3">
-				<label class="form-label">Tipo</label> 
-				<input type="text" class="form-control" name="tipoAssinatura" required="required">
-			</div>
-			
-			<div class="mb-3">
-				<label class="form-label">Nome</label> 
-				<input type="text" class="form-control" name="nome" required="required">
-			</div>
-			
-			<div class="mb-3">
-				<label class="form-label">Preço</label> <input type="text" class="form-control" name="preco" required="required">
-			</div>
-
-			<button type="submit" class="btn btn-primary">cadastrar</button>
-		</form>
-
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 
 

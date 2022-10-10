@@ -1,32 +1,37 @@
 package br.edu.infnet.appcatalogo.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appcatalogo.model.domain.Catalogo;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
+import br.edu.infnet.appcatalogo.model.domain.repository.CatalogoRepository;
 import br.edu.infnet.appcatalogo.model.test.AppCatalogo;
 
 @Service
 public class CatalogoService {
-	private static Map<Integer, Catalogo> mapaCatalogo = new HashMap<>();
-	private static Integer codigo = 1;
-
+	
+	@Autowired
+	CatalogoRepository catalogoRepository;
+	
 	public void incluir(Catalogo catalogo) {
-
-		catalogo.setCodigo(codigo++);
-		mapaCatalogo.put(catalogo.getCodigo(), catalogo);
+		
+		catalogoRepository.save(catalogo);
 		AppCatalogo.relatorio("Inclusão do Catalogo " + catalogo.getNome() + " realizada com sucesso!", catalogo);
 	}
 
 	public Collection<Catalogo> obterLista() {
-		return mapaCatalogo.values();
+		return (Collection<Catalogo>) catalogoRepository.findAll();
+	}
+	
+	public Collection<Catalogo> obterLista(Usuario usuario) {
+		return (Collection<Catalogo>) catalogoRepository.findAll(usuario.getId());
 	}
 
 	public void excluir(Integer id) {
-		mapaCatalogo.remove(id);
+		catalogoRepository.deleteById(id);
 	}
 
 }

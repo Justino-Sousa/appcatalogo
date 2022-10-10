@@ -30,6 +30,7 @@
 					<th>Tipo de Assinatura</th>
 					<th>Nome</th>
 					<th>Preço</th>
+					<th>Usuário</th>
 					<th>Excluir</th>
 				</tr>
 			</thead>
@@ -40,6 +41,7 @@
 						<td>${a.tipoAssinatura}</td>
 						<td>${a.nome}</td>
 						<td>R$ ${a.preco},00</td>
+						<td>${a.usuario.nome}</td>
 						<td><a href="/assinatura/${a.codigo}/delete">excluir</a></td>
 
 					</tr>

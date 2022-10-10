@@ -1,34 +1,40 @@
 package br.edu.infnet.appcatalogo.service;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appcatalogo.model.domain.Assinatura;
-import br.edu.infnet.appcatalogo.model.test.AppCatalogo;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
+import br.edu.infnet.appcatalogo.model.domain.repository.AssinaRepository;
 
 @Service
 public class AssinaService {
-
-	private static Map<Integer, Assinatura> mapaAssinatura = new HashMap<>();
-	private static Integer codigo = 1;
+	
+	@Autowired
+	AssinaRepository assinaRepository;
 
 	public void incluir(Assinatura assinatura) {
-
-		assinatura.setCodigo(codigo++);
-		mapaAssinatura.put(assinatura.getCodigo(), assinatura);
-		AppCatalogo.relatorio("Inclusão da Assinatura " + assinatura.getNome() + " realizada com sucesso!", assinatura);
+		
+		assinaRepository.save(assinatura);
+		
 	}
 
-	public Collection<Assinatura> obterLista() {
-		return mapaAssinatura.values();
+	public Collection<Assinatura> obterLista() {  
+		
+		List<Assinatura> assinaturas = (List<Assinatura>) assinaRepository.findAll(); 
+		return assinaturas;
+	}
+	
+	public Collection<Assinatura> obterLista(Usuario usuario) {  
+		 
+		return assinaRepository.obterAssinaturaById(usuario.getId());
 	}
 
 	public void excluir(Integer id) {
-		mapaAssinatura.remove(id);
+		assinaRepository.deleteById(id);
 	}
 	
 	public Assinatura getAssinaByTipo(String tipo) {

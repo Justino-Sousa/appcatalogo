@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appcatalogo.model.domain.JogoPremium;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
 import br.edu.infnet.appcatalogo.service.JogoPremiumService;
 
 @Controller
@@ -19,8 +21,8 @@ public class JogoPremiumController {
 	JogoPremiumService jogoPremiumService;
 
 	@GetMapping("/list")
-	public String jogoPremium(Model model) {
-		model.addAttribute("listagem", jogoPremiumService.obterLista());
+	public String jogoPremium(Model model,@SessionAttribute("user") Usuario usuario) {
+		model.addAttribute("listagem", jogoPremiumService.obterLista(usuario));
 		return "/jogoPremium/list";
 	}
 
@@ -38,8 +40,9 @@ public class JogoPremiumController {
 	}
 	
 	@PostMapping(value ="/incluir")
-	public String incluir (JogoPremium jogoPremium) {
+	public String incluir (JogoPremium jogoPremium,@SessionAttribute("user") Usuario usuario) {
 		
+		jogoPremium.setUsuario(usuario);
 		jogoPremiumService.incluir(jogoPremium);
 		return "redirect:/jogoPremium/list";
 	} 

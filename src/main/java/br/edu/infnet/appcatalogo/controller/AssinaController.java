@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appcatalogo.model.domain.Assinatura;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
+import br.edu.infnet.appcatalogo.model.exceptions.PrecoInvalidoException;
 import br.edu.infnet.appcatalogo.service.AssinaService;
 
 @Controller
@@ -20,9 +23,9 @@ public class AssinaController {
 	AssinaService assinaService;
 	
 	@GetMapping("/list")
-	public String telaLista(Model model) {
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
 		
-		model.addAttribute("listagem", assinaService.obterLista());
+		model.addAttribute("listagem", assinaService.obterLista(usuario));
 		return "/assinatura/list";
 	}
 	
@@ -39,9 +42,16 @@ public class AssinaController {
 	}
 	
 	@PostMapping(value ="/incluir")
-	public String incluir (Assinatura assinatura) {
+	public String incluir (Assinatura assinatura, @SessionAttribute("user") Usuario usuario) {
 		
-		assinaService.incluir(assinatura);
+		try {
+			Assinatura assinatura2 = new Assinatura(assinatura.getTipoAssinatura(), assinatura.getNome(), assinatura.getPreco());
+			assinatura2.setUsuario(usuario);
+			assinaService.incluir(assinatura2);
+		} catch (PrecoInvalidoException e) {
+			e.printStackTrace();
+		}
+	
 		return "redirect:/assinatura/list";
 	} 
 	

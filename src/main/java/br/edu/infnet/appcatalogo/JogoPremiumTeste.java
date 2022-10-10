@@ -9,15 +9,14 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appcatalogo.model.domain.JogoPremium;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
 import br.edu.infnet.appcatalogo.model.exceptions.ValorInvalidoException;
 import br.edu.infnet.appcatalogo.service.JogoPremiumService;
 
 @Component
-@Order(5)
 public class JogoPremiumTeste implements ApplicationRunner {
 
 	@Autowired
@@ -26,8 +25,10 @@ public class JogoPremiumTeste implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) {
 
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		
 		System.out.println("### Jogo Premium início ####" + "\r\n");
-
 		String dir = "/home/justino/Documentos/Programação/STS-workspace/appcatalogo/data/";
 		String arq = "jogo.txt";
 
@@ -47,6 +48,7 @@ public class JogoPremiumTeste implements ApplicationRunner {
 						jp1.setGenero(campos[3]);
 						jp1.setDesenvolvedor(campos[4]);
 						jp1.setNome(campos[5]);
+						jp1.setUsuario(usuario);
 						jogoPremiumService.incluir(jp1);
 						System.out.println("Calculo de venda avulsa: " + jp1.calcularVendaAvulsa());
 					} catch (ValorInvalidoException e) {
@@ -67,7 +69,6 @@ public class JogoPremiumTeste implements ApplicationRunner {
 		}
 
 		finally {
-
 			System.out.println("Terminou!");
 		}
 

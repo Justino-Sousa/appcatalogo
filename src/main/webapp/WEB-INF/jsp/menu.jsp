@@ -19,6 +19,8 @@
 								href="/jogoPremium/list">Jogos Premium</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="/jogoDeluxe/list">Jogos Deluxe</a></li>
+								<li class="nav-item"><a class="nav-link"
+								href="/jogo/list">Jogos</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="/catalogo/list">Catálogo</a></li>
 							<li class="nav-item"><a class="nav-link"

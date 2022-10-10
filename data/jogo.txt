@@ -1,9 +1,9 @@
 JB;150.00;Jogos da memoria;Estratégia;SONY;Memory game
 JB;100.00;Bilhar online;Diversão;Santa monica;Bilhar2
 JB;130.00;Gamão online;Diversão;Division;Super Gamão
-JP;250.00;Crash Bandicoot é um jogo eletrônico de plataforma desenvolvido pela Naughty Dog e publicado pela Sony Computer Entertainment em 1996 para o console PlayStation. É o primeiro episódio da série Crash Bandicoot.;Aventura;Naughty Dog;Crash Bandicoot
-JP;200.00;eFootball é uma série de jogos eletrônicos de simulação de futebol desenvolvido e publicado pela Konami desde 1995. Consiste em dezoito jogos principais e vários spin-offs que foram lançados em diversas plataformas diferentes. A série alcançou sucesso crítico e comercial.;Esportes;Konami;eFootball
-JP;280.00;Returnal é um jogo eletrônico de tiro em terceira pessoa roguelike desenvolvido pela Housemarque e publicado pela Sony Interactive Entertainment. Foi lançado exclusivamente para PlayStation 5 em 30 de abril de 2021.;Tiro/terceira pessoa;Housemarque;Returnal
+JP;250.00;Crash Bandicoot é um jogo eletrônico de plataforma desenvolvido pela Naughty Dog e publicado pela Sony Computer Entertainment em 1996 para o console PlayStation;Aventura;Naughty Dog;Crash Bandicoot
+JP;200.00;eFootball é uma série de jogos eletrônicos de simulação de futebol desenvolvido e publicado pela Konami desde 1995. Consiste em dezoito jogos principais.;Esportes;Konami;eFootball
+JP;280.00;Returnal é um jogo eletrônico de tiro em terceira pessoa roguelike desenvolvido pela Housemarque e publicado pela Sony Interactive Entertainment. Foi lançado exclusivamente para PlayStation 5.;Tiro/terceira pessoa;Housemarque;Returnal
 JD;300.00;The Last of Us é um jogo eletrônico de ação-aventura e sobrevivência desenvolvido pela Naughty Dog e publicado pela Sony Computer Entertainment.;Ação e aventura/Survival horror;Naughty Dog;The Last of Us
 JD;300.00;God of War Ragnarök é um futuro jogo eletrônico de ação-aventura desenvolvido pela Santa Monica Studio e publicado pela Sony Interactive Entertainment. Está programado para ser lançado em 9 de novembro de 2022 para PlayStation 4 e PlayStation 5.;Ação e aventura/luta/hack and slash;Santa monica;God of War Ragnarök
 JD;350.00;FIFA 22 é um jogo eletrônico de simulação de futebol desenvolvido e publicado pela Electronic Arts.;Esportes;EA;FIFA 22

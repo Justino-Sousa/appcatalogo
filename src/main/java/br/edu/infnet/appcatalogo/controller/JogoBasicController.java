@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appcatalogo.model.domain.JogoBasic;
+import br.edu.infnet.appcatalogo.model.domain.Usuario;
 import br.edu.infnet.appcatalogo.service.JogoBasicService;
 
 @Controller
@@ -19,8 +21,8 @@ public class JogoBasicController {
 	JogoBasicService jogoBasicService;
 		
 	@GetMapping("/list")
-	public String telaLista(Model model) {	
-		model.addAttribute("listagem", jogoBasicService.obterLista());
+	public String telaLista(Model model,@SessionAttribute("user") Usuario usuario) {	
+		model.addAttribute("listagem", jogoBasicService.obterLista(usuario));
 		return "/jogoBasic/list";
 	}
 	
@@ -37,8 +39,9 @@ public class JogoBasicController {
 	}
 	
 	@PostMapping(value ="/incluir")
-	public String incluir (JogoBasic jogoBasic) {
+	public String incluir (JogoBasic jogoBasic,@SessionAttribute("user") Usuario usuario) {
 		
+		jogoBasic.setUsuario(usuario);
 		jogoBasicService.incluir(jogoBasic);
 		return "redirect:/jogoBasic/list";
 	} 
